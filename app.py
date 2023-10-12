@@ -27,5 +27,13 @@ def get_ip_address():
 def list_ip_addresses():
     return {'ip_addresses': ip_addresses}, {'Content-Type': 'application/json'}
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return '404 Error: Page not found', 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return '500 Error: Internal server error', 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
