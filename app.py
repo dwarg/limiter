@@ -22,6 +22,10 @@ def get_ip_address():
         return yaml.dump({'ip': {'address': ip}}), {'Content-Type': 'application/yaml'}
     else:
         return f"Your IP address is {ip}", {'Content-Type': 'text/plain'}
+    
+@app.route('/list', methods=['GET'])
+def list_ip_addresses():
+    return {'ip_addresses': ip_addresses}, {'Content-Type': 'application/json'}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
