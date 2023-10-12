@@ -17,3 +17,6 @@ The application has two endpoints:
 
 * `'/'`: Returns the user's IP address in the requested format.
 * `'/list'`: Returns a JSON object containing a list of all IP addresses that have accessed the '/' endpoint.
+
+## TODO
+* Kubernetes implementation is planned
