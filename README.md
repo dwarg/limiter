@@ -15,7 +15,7 @@ The project consists of the following components:
 ## Endpoints
 The application has two endpoints:
 
-* `'/'`: Returns the user's IP address in the requested format.
+* `'/'`: Returns the user's IP address in the requested format. Supported formats are 'text/html', 'application/xml', 'application/yaml', and 'text/plain'. By default, the endpoint returns a plain text response.
 * `'/list'`: Returns a JSON object containing a list of all IP addresses that have accessed the '/' endpoint.
 
 ## TODO
