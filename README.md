@@ -11,6 +11,7 @@ The project consists of the following components:
 * Build the Docker image: `docker build -t image_name/app:latest .`
 * Push the Docker image to your Docker registry: `docker push image_name/app:latest`
 * Run the container by executing the command `docker run -p 8080:8080 image_name:tag`, where image_name and tag are the name and version of the image, and 8080 is the port number on the host.
+* Apply the Kubernetes deployment and service files: `kubectl apply -f deployment.yml` and `kubectl apply -f service.yml`
 
 ## Endpoints
 The application has two endpoints:
@@ -18,5 +19,15 @@ The application has two endpoints:
 * `'/'`: Returns the user's IP address in the requested format. Supported formats are 'text/html', 'application/xml', 'application/yaml', and 'text/plain'. By default, the endpoint returns a plain text response.
 * `'/list'`: Returns a JSON object containing a list of all IP addresses that have accessed the '/' endpoint.
 
-## TODO
-* Kubernetes implementation is planned
+## Deployment
+The Kubernetes deployment and service files are included in the repository. The deployment file (**deployment.yml**) specifies the desired number of replicas for the application, the Docker image to use, and resource limits.
+
+The service file (**service.yml**) exposes the deployment as a NodePort service, allowing external traffic to reach the application.
+
+To deploy the application, run the following commands:
+
+* Create a namespace for the application by executing the command `kubectl create namespace namespace_name`
+* Run the command `kubectl apply -f deployment.yaml` to deploy the application on the cluster.
+* Run the command `kubectl apply -f service.yaml` to create a Service for the application.
+* To get the IP address of the Service, run the command `kubectl get service -n namespace_name`
+* Go to the web browser and enter the Service IP address in the format `http://ip` or `https://ip` depending on the configuration.
